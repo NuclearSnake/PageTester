@@ -4,13 +4,15 @@ import org.jsoup.select.Elements;
 
 public class SiteTester {
     private SiteLoader siteLoader;
+    private ResultDisplayer resultDisplayer;
 
-    public SiteTester(SiteLoader siteLoader) {
+    public SiteTester(SiteLoader siteLoader, ResultDisplayer resultDisplayer) {
         this.siteLoader = siteLoader;
+        this.resultDisplayer = resultDisplayer;
     }
 
-    public String test(String webpage) {
-        WebPageLoadingResult result = siteLoader.loadWebpage(webpage);
+    public String test(String urlString) {
+        WebPageLoadingResult result = siteLoader.loadWebpage(urlString);
         String html = result.getWebpage();
         if(html != null) {
 //            Document doc = Jsoup.parse(html);
@@ -18,7 +20,7 @@ public class SiteTester {
 //        Element head = doc.select("head").first();
 //        System.out.println(links);
 //            return (links.toString());
-            return String.format("The result of testing '"+webpage+"':\n\tTime to first bit: %d\n\tTime to finish reading: %d", result.getTimeToFirstBit(), result.getTimeToFinish());
+            return resultDisplayer.getResultText(urlString, result);
         } else {
             return null;
         }
