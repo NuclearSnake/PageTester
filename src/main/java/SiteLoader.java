@@ -1,3 +1,3 @@
 public interface SiteLoader {
-    String loadWebpage(String url);
+    WebPageLoadingResult loadWebpage(String url);
 }

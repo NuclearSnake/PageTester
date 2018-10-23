@@ -6,24 +6,37 @@ import java.net.URL;
 
 public class SiteLoaderURLStream implements SiteLoader{
     @Override
-    public String loadWebpage(String url) {
+    public WebPageLoadingResult loadWebpage(String url) {
         return loadWithURLStream(url);
     }
 
-    private String loadWithURLStream(String urlString){
+    private WebPageLoadingResult loadWithURLStream(String urlString){
         URL url;
         InputStream is = null;
         BufferedReader br;
         StringBuilder builder = new StringBuilder();
         String line = null;
+        WebPageLoadingResult webPageLoadingResult = new WebPageLoadingResult();
 
         try {
             url = new URL(urlString);
+
+            TimeMeasurer timeMeasurer = new TimeMeasurer();
+            timeMeasurer.setStartNow();
+
             is = url.openStream();  // throws an IOException
             br = new BufferedReader(new InputStreamReader(is));
 
-            while ((line = br.readLine()) != null) {
+            if((line = br.readLine()) != null){
+                webPageLoadingResult.setTimeToFirstBit(timeMeasurer.getElapsedMS());
                 builder.append(line);
+
+                while ((line = br.readLine()) != null) {
+                    builder.append(line);
+                }
+
+                webPageLoadingResult.setTimeToFinish(timeMeasurer.getElapsedMS());
+                webPageLoadingResult.setWebpage(builder.toString());
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -31,10 +44,10 @@ public class SiteLoaderURLStream implements SiteLoader{
             try {
                 if (is != null) is.close();
             } catch (IOException ioe) {
-                // nothing to see here
+                // nothing to do here
             }
         }
 
-        return builder.toString();
+        return webPageLoadingResult;
     }
 }
