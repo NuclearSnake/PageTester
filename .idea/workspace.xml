@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0610087a-db6b-47df-bcde-b1b2aa834767" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/WebPageLoadingResult.class" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/WebPageLoadingResult.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/SiteLoader.class" afterPath="$PROJECT_DIR$/out/production/classes/SiteLoader.class" />

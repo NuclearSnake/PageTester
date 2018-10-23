@@ -16,7 +16,7 @@ The project is developed to learn and to get speed programming results as part-t
   - [ ] Title
   - [ ] Description
   - [ ] Server Response
-  - [ ] Response Time (to the first bit of information read)
+  - [x] Response Time (to the first bit of information read)
   - [ ] Headers H1
   - [ ] Images
   - [x] Links (internal + external)
