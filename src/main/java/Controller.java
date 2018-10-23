@@ -18,7 +18,7 @@ public class Controller {
     }
 
     public void testConnection(String url){
-        SiteTester siteTester = new SiteTester(new SiteLoaderURLStream(), new SimpleResultDisplayer());
+        SiteTester siteTester = new SiteTester(new SiteLoaderHttpUrlConnection(), new SimpleResultDisplayer());
         lbResult.setText(siteTester.test(url));
     }
 }

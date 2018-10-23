@@ -1,3 +1,3 @@
 public interface ResultDisplayer {
-    String getResultText(String urlString, WebPageLoadingResult webPageLoadingResult);
+    String getResultText(SiteTester.WebPageTestingResult webPageLoadingResult);
 }

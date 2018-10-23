@@ -1,7 +1,25 @@
 public class WebPageLoadingResult {
-    private String webpage = null;
-    private long timeToFirstBit = -1;
-    private long timeToFinish = -1;
+    protected String urlString = null;
+    protected int responseCode = -1;
+    protected String webpage = null;
+    protected long timeToFirstBit = -1;
+    protected long timeToFinish = -1;
+
+    public String getUrlString() {
+        return urlString;
+    }
+
+    public void setUrlString(String urlString) {
+        this.urlString = urlString;
+    }
+
+    public int getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(int responseCode) {
+        this.responseCode = responseCode;
+    }
 
     public String getWebpage() {
         return webpage;
