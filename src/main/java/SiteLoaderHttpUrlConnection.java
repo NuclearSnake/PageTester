@@ -27,6 +27,7 @@ public class SiteLoaderHttpUrlConnection implements SiteLoader{
             timeMeasurer.setStartNow();
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setConnectTimeout(10_000);
             final int responseCode = httpURLConnection.getResponseCode();
 
             webPageLoadingResult.setTimeToFirstBit(timeMeasurer.getElapsedMS());
