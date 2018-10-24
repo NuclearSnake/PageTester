@@ -3,13 +3,30 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * <h1>Class for testing websites</h1>
+ *
+ * @author  Makarenko George
+ * @version 1.0
+ * @since   2018-10-22
+ */
 public class SiteTester {
+    /** the result of loading the webpage which provides some essential info needed for testing*/
     private WebPageLoadingResult loadingResult;
 
+    /**
+     * @param loadingResult a result of loading the webpage
+     * @see WebPageLoadingResult
+     * @see SiteLoader
+     */
     public void setLoadingResult(WebPageLoadingResult loadingResult) {
         this.loadingResult = loadingResult;
     }
 
+    /**
+     * Performs testing on the {@link #loadingResult} provided before
+     * @return the result of testing
+     */
     public WebPageTestingResult test() {
         WebPageTestingResult testingResult = new WebPageTestingResult(loadingResult);
 
@@ -41,6 +58,13 @@ public class SiteTester {
         }
     }
 
+    /**
+     * Retrieves a meta tag from a document by the name
+     *
+     * @param document to get the tag from
+     * @param attr the name of the tag
+     * @return string representation of the tag
+     */
     private String getMetaTag(Document document, String attr) {
         Elements elements = document.select("meta[name=" + attr + "]");
         for (Element element : elements) {

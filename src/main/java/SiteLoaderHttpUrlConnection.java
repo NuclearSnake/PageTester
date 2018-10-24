@@ -5,6 +5,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * <h1>A class to load a webpage</h1>
+ *
+ * Uses {@link HttpURLConnection} in order to load a webpage <p>
+ *
+ * @author  Makarenko George
+ * @version 1.0
+ * @since   2018-10-22
+ */
 public class SiteLoaderHttpUrlConnection implements SiteLoader{
     @Override
     public WebPageLoadingResult loadWebpage(String url) {

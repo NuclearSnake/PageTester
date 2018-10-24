@@ -1,14 +1,26 @@
-import org.jsoup.select.Elements;
-
 import java.util.List;
 
+/**
+ * <h1>A data class to represent the testing result</h1>
+ *
+ * @author  Makarenko George
+ * @version 1.0
+ * @since   2018-10-23
+ */
 public class WebPageTestingResult {
+    /** the result of loading of a webpage */
     private WebPageLoadingResult loadingResult;
+    /** all the <tt>{@code <a>}</tt> tags from the webpage */
     private List<String> links;
+    /** all the <tt>{@code <img>}</tt> tags from the webpage */
     private List<String> images;
+    /** all the <tt>{@code <h1>}</tt> headers from the webpage */
     private List<String> headersH1;
+    /** the title of the webpage */
     private String title;
+    /** the description of the webpage */
     private String description;
+    /** tells if a loading was successful */
     private boolean isSuccessfull;
 
     WebPageTestingResult(WebPageLoadingResult loadingResult) {
@@ -19,7 +31,10 @@ public class WebPageTestingResult {
         return loadingResult;
     }
 
-    // returning not copy but the original list to reduce complexity
+    /**
+     * Returns the list of {@link #links} <p>
+     * Note: Returns not copy but the original list to reduce complexity
+     */
     public List<String> getLinks() {
         return links;
     }
@@ -28,7 +43,10 @@ public class WebPageTestingResult {
         this.links = links;
     }
 
-    // returning not copy but the original list to reduce complexity
+    /**
+     * Returns the list of {@link #images} <p>
+     * Note: Returns not copy but the original list to reduce complexity
+     */
     public List<String> getImages() {
         return images;
     }
@@ -37,11 +55,14 @@ public class WebPageTestingResult {
         this.images = images;
     }
 
+    /**
+     * Returns the list of {@link #headersH1} <p>
+     * Note: Returns not copy but the original list to reduce complexity
+     */
     public List<String> getHeadersH1() {
         return headersH1;
     }
 
-    // returning not copy but the original list to reduce complexity
     public void setHeadersH1(List<String> headersH1) {
         this.headersH1 = headersH1;
     }

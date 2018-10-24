@@ -6,10 +6,10 @@ The project is developed to learn and to get speed programming results as part-t
 
 ### There will be several work flows:
 1. Creating functionality in Java classes
-> 2. Refactoring in order to improve maintainability, lower coupling etc.
+2. Refactoring in order to improve maintainability, lower coupling etc.
 3. JavaFX: creating UI and connecting it with the functionality
 4. Testing
-5. Creating nice JavaDocs
+> 5. Creating nice JavaDocs
 
 ### Tasks
 - [x] Parsing
