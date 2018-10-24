@@ -14,6 +14,12 @@ public class SiteTester {
     /** the result of loading the webpage which provides some essential info needed for testing*/
     private WebPageLoadingResult loadingResult;
 
+    public SiteTester() {}
+
+    public SiteTester(WebPageLoadingResult loadingResult) {
+        this.loadingResult = loadingResult;
+    }
+
     /**
      * @param loadingResult a result of loading the webpage
      * @see WebPageLoadingResult
@@ -31,7 +37,7 @@ public class SiteTester {
         WebPageTestingResult testingResult = new WebPageTestingResult(loadingResult);
 
         String html = loadingResult.getWebpage();
-        testingResult.setSuccessfull(loadingResult.getResponseCode() == 200);
+        testingResult.setSuccessfull(loadingResult.getResponseCode() == 200 && html != null);
         if(!testingResult.isSuccessfull())
             return testingResult;
 
@@ -47,7 +53,7 @@ public class SiteTester {
             Elements headersH1 = doc.select("h1");
             Elements images = doc.select("img");
 
-            ElementPostProcessor elementPostProcessor = new ElementPostProcessor();;
+            ElementPostProcessor elementPostProcessor = new ElementPostProcessor();
             testingResult.setLinks(elementPostProcessor.getStringListReadyToGo(links));
             testingResult.setHeadersH1(elementPostProcessor.getStringListReadyToGo(headersH1));
             testingResult.setImages(elementPostProcessor.getStringListReadyToGo(images));

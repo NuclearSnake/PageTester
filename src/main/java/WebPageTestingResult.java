@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,17 +12,17 @@ public class WebPageTestingResult {
     /** the result of loading of a webpage */
     private WebPageLoadingResult loadingResult;
     /** all the <tt>{@code <a>}</tt> tags from the webpage */
-    private List<String> links;
+    private List<String> links = new ArrayList<>();
     /** all the <tt>{@code <img>}</tt> tags from the webpage */
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
     /** all the <tt>{@code <h1>}</tt> headers from the webpage */
-    private List<String> headersH1;
+    private List<String> headersH1 = new ArrayList<>();
     /** the title of the webpage */
     private String title;
     /** the description of the webpage */
     private String description;
     /** tells if a loading was successful */
-    private boolean isSuccessfull;
+    private boolean isSuccessfull = false;
 
     WebPageTestingResult(WebPageLoadingResult loadingResult) {
         this.loadingResult = loadingResult;

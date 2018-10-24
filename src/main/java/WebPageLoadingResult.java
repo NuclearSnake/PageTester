@@ -7,17 +7,17 @@
  */
 public class WebPageLoadingResult {
     /** The URL address of a webpage */
-    protected String urlString = null;
+    private String urlString = null;
     /** The response code we got on trying to connect */
-    protected int responseCode = -1;
+    private int responseCode = -1;
     /** The text representation of a webpage loaded. <p>
      * Typically Html content
      */
-    protected String webpage = null;
+    private String webpage = null;
     /** Time passed since the start of loading to the first bit of a response received */
-    protected long timeToFirstBit = -1;
+    private long timeToFirstBit = -1;
     /** Time passed since the start of loading to the finish of loading */
-    protected long timeToFinish = -1;
+    private long timeToFinish = -1;
 
     public String getUrlString() {
         return urlString;
