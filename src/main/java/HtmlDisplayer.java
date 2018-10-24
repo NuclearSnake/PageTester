@@ -49,18 +49,17 @@ public class HtmlDisplayer implements ResultDisplayer {
         builder.append("<p>Images found: <b>").append(testingResult.getImages().size()).append("</b></p>");
         builder.append("<p>Headers H1 found: <b>").append(testingResult.getHeadersH1().size()).append("</b></p>");
 
-        builder.append("<h3>Headers H1: </h3>");
-        builder.append(createHTMLTable(testingResult.getHeadersH1()));
-        builder.append("<h3>Images: </h3>");
-        builder.append(createHTMLTable(testingResult.getImages()));
-        builder.append("<h3>Links: </h3>");
-        builder.append(createHTMLTable(testingResult.getLinks()));
-//        for(Element link : testingResult.getImages()){
-//            builder.append(link.toString()).append(newLineChar);
-//        }
+        builder.append(createHTMLTable("Headers H1", testingResult.getHeadersH1()));
+        builder.append(createHTMLTable("Images", testingResult.getImages()));
+        builder.append(createHTMLTable("Links", testingResult.getLinks()));
         builder.append("</body>");
         return builder.toString();
     }
+
+    public static void sortByText(Elements elements){
+        elements.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
+    }
+
 
     public static Elements getWithoutDuplicates(Elements elements){
         Elements result = new Elements();
@@ -93,23 +92,23 @@ public class HtmlDisplayer implements ResultDisplayer {
 
 
 
-    public static String createHTMLTable(Elements elements){
+    public static String createHTMLTable(String name, Elements elements){
         StringBuilder builder = new StringBuilder();
+        builder.append("<h3>").append(name).append(": </h3>");
 
 //        builder.append("<textarea>");
         builder.append("<div class=\"Container\">");
 
         removeAttributes(elements);
         elements = getWithoutDuplicates(elements);
+        sortByText(elements);
 
         for(int i=0; i < elements.size(); i++){
             builder.append("<div class=\"Content\">");
-//            element.attr("style", "width=90px; height=auto; max-width=90px");
             builder.append(elements.get(i));
             builder.append("</div>");
         }
         builder.append("</div>");
-//        builder.append("</table>");
 //        builder.append("</textarea>");
         return builder.toString();
     }

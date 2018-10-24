@@ -3,7 +3,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class SimpleResultDisplayer implements ResultDisplayer {
-    final String newLineChar = "\n";
+    static final String newLineChar = "\n";
 
     @Override
     public String getResultText(WebPageTestingResult testingResult) {
@@ -19,15 +19,19 @@ public class SimpleResultDisplayer implements ResultDisplayer {
 
         builder.append("\tTitle: ").append(testingResult.getTitle()).append(newLineChar);
         builder.append("\tDescription: ").append(testingResult.getDescription()).append(newLineChar).append(newLineChar);
-        builder.append("\tLinks found: ").append(testingResult.getLinks().size()).append(newLineChar);
-        builder.append("\tImages found: ").append(testingResult.getImages().size()).append(newLineChar);
         builder.append("\tHeaders H1 found: ").append(testingResult.getHeadersH1().size()).append(newLineChar);
+        builder.append("\tImages found: ").append(testingResult.getImages().size()).append(newLineChar);
+        builder.append("\tLinks found: ").append(testingResult.getLinks().size()).append(newLineChar);
 
-        builder.append(createHTMLTable(testingResult.getImages()));
-//        for(Element link : testingResult.getImages()){
-//            builder.append(link.toString()).append(newLineChar);
-//        }
+        builder.append(elementsToNiceString("HEADERS H1", testingResult.getHeadersH1()));
+        builder.append(elementsToNiceString("IMAGES", testingResult.getImages()));
+        builder.append(elementsToNiceString("LINKS", testingResult.getLinks()));
+
         return builder.toString();
+    }
+
+    public static void sortByText(Elements elements){
+        elements.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
     }
 
     public static Elements getWithoutDuplicates(Elements elements){
@@ -59,26 +63,21 @@ public class SimpleResultDisplayer implements ResultDisplayer {
         return elements;
     }
 
-
-
-    public static String createHTMLTable(Elements elements){
+    public static String elementsToNiceString(String name, Elements elements){
         StringBuilder builder = new StringBuilder();
-
-//        builder.append("<textarea>");
-        builder.append("<div class=\"Container\">");
-
+        int total = elements.size();
         removeAttributes(elements);
         elements = getWithoutDuplicates(elements);
+        int unique = elements.size();
 
-        for(int i=0; i < elements.size(); i++){
-            builder.append("<div class=\"Content\">");
-//            element.attr("style", "width=90px; height=auto; max-width=90px");
-            builder.append(elements.get(i));
-            builder.append("</div>");
+        builder.append(String.format("%s: %d (%d unique)", name, total, unique)).append(newLineChar);
+
+        sortByText(elements);
+
+        for(Element element : elements){
+            builder.append(element).append(newLineChar);
         }
-        builder.append("</div>");
-//        builder.append("</table>");
-//        builder.append("</textarea>");
+
         return builder.toString();
     }
 }

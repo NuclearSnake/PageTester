@@ -2,6 +2,7 @@ import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
@@ -13,6 +14,7 @@ public class Controller {
     public TextField tfUrl;
     public Label lbResult;
     public WebView wvResult;
+    public TextArea taResult;
 
     public void test(ActionEvent actionEvent) {
         String urlString = tfUrl.getText();
@@ -24,10 +26,9 @@ public class Controller {
         SiteTester siteTester = new SiteTester();
         siteTester.setLoadingResult(loadingResult);
         WebPageTestingResult testingResult = siteTester.test();
-        HtmlDisplayer htmlDisplayer = new HtmlDisplayer();
-        String displayResult = htmlDisplayer.getResultText(testingResult);
 
-        wvResult.getEngine().loadContent(displayResult);
+        wvResult.getEngine().loadContent(new HtmlDisplayer().getResultText(testingResult));
+        taResult.setText(new SimpleResultDisplayer().getResultText(testingResult));
     }
 
     @FXML

@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.web.WebView?>
-<GridPane alignment="CENTER" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0"
-          xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller">
+
+<GridPane alignment="CENTER" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="418.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" prefWidth="250.0" />
   </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="ALWAYS" />
-    <RowConstraints prefHeight="203.0" vgrow="ALWAYS" />
-  </rowConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="ALWAYS" />
+        <RowConstraints prefHeight="203.0" vgrow="ALWAYS" />
+    </rowConstraints>
   <Label text="Please type in a page you want to test:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-  <TextField fx:id="tfUrl" text="https://netpeaksoftware.com/" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#onEnter"/>
+  <TextField fx:id="tfUrl" onAction="#onEnter" text="https://netpeaksoftware.com/" GridPane.columnIndex="0" GridPane.rowIndex="1" />
   <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="2">
     <Button onAction="#test" prefWidth="80.0" text="Test" textAlignment="CENTER" />
   </HBox>
-  <!--<Label fx:id="lbResult" text="Here will be the result" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="3" />-->
-  <WebView fx:id="wvResult" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+    <tabs>
+      <Tab closable="false" text="WebView">
+        <content>
+          <!--<Label fx:id="lbResult" text="Here will be the result" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="3" />-->
+          <WebView fx:id="wvResult" />
+        </content>
+      </Tab>
+      <Tab closable="false" text="Plain Text">
+        <content>
+          <TextArea fx:id="taResult" editable="false" wrapText="true" text="Here will be the result" />
+        </content>
+      </Tab>
+    </tabs>
+  </TabPane>
 </GridPane>
