@@ -2,6 +2,8 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.List;
+
 public class HtmlDisplayer implements ResultDisplayer {
     final String newLineChar = "<br/>";
 
@@ -56,52 +58,15 @@ public class HtmlDisplayer implements ResultDisplayer {
         return builder.toString();
     }
 
-    public static void sortByText(Elements elements){
-        elements.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
-    }
-
-
-    public static Elements getWithoutDuplicates(Elements elements){
-        Elements result = new Elements();
-        boolean duplicate;
-        for(Element element : elements){
-            duplicate = false;
-            for(Element already : result){
-                if(already.toString().equals(element.toString())) {
-                    duplicate = true;
-                    break;
-                }
-            }
-            if(!duplicate)
-                result.add(element);
-        }
-
-        return result;
-    }
-
-    public static Elements removeAttributes(Elements elements){
-        for(Element element : elements){
-            for(Attribute attribute : element.attributes()){
-                if(!"src".equals(attribute.getKey()))
-                    element.attr(attribute.getKey(), "");
-            }
-        }
-
-        return elements;
-    }
-
-
-
-    public static String createHTMLTable(String name, Elements elements){
+    public static String createHTMLTable(String name, List<String> elements){
         StringBuilder builder = new StringBuilder();
         builder.append("<h3>").append(name).append(": </h3>");
 
 //        builder.append("<textarea>");
         builder.append("<div class=\"Container\">");
 
-        removeAttributes(elements);
-        elements = getWithoutDuplicates(elements);
-        sortByText(elements);
+        elements = Utils.getWithoutStringDuplicates(elements);
+        Utils.sortByText(elements);
 
         for(int i=0; i < elements.size(); i++){
             builder.append("<div class=\"Content\">");

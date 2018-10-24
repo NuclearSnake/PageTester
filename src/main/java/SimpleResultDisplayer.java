@@ -2,6 +2,9 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SimpleResultDisplayer implements ResultDisplayer {
     static final String newLineChar = "\n";
 
@@ -30,53 +33,21 @@ public class SimpleResultDisplayer implements ResultDisplayer {
         return builder.toString();
     }
 
-    public static void sortByText(Elements elements){
-        elements.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
-    }
-
-    public static Elements getWithoutDuplicates(Elements elements){
-        Elements result = new Elements();
-        boolean duplicate;
-        for(Element element : elements){
-            duplicate = false;
-            for(Element already : result){
-                if(already.toString().equals(element.toString())) {
-                    duplicate = true;
-                    break;
-                }
-            }
-            if(!duplicate)
-                result.add(element);
-        }
-
-        return result;
-    }
-
-    public static Elements removeAttributes(Elements elements){
-        for(Element element : elements){
-            for(Attribute attribute : element.attributes()){
-                if(!"src".equals(attribute.getKey()))
-                    element.attr(attribute.getKey(), "");
-            }
-        }
-
-        return elements;
-    }
-
-    public static String elementsToNiceString(String name, Elements elements){
+    public static String elementsToNiceString(String name, List<String> elements){
         StringBuilder builder = new StringBuilder();
         int total = elements.size();
-        removeAttributes(elements);
-        elements = getWithoutDuplicates(elements);
+        elements = Utils.getWithoutStringDuplicates(elements);
         int unique = elements.size();
 
-        builder.append(String.format("%s: %d (%d unique)", name, total, unique)).append(newLineChar);
+        builder.append(newLineChar).append(String.format("%s: %d (%d unique)", name, total, unique)).append(newLineChar);
 
-        sortByText(elements);
+        Utils.sortByText(elements);
 
-        for(Element element : elements){
+        for(String element : elements){
             builder.append(element).append(newLineChar);
         }
+
+        builder.append(newLineChar);
 
         return builder.toString();
     }

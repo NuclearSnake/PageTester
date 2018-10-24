@@ -26,7 +26,9 @@
   <Label text="Please type in a page you want to test:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
   <TextField fx:id="tfUrl" onAction="#onEnter" text="https://netpeaksoftware.com/" GridPane.columnIndex="0" GridPane.rowIndex="1" />
   <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="2">
-    <Button onAction="#test" prefWidth="80.0" text="Test" textAlignment="CENTER" />
+      <Button onAction="#test" prefWidth="80.0" text="Test" textAlignment="CENTER" />
+      <Button onAction="#save" prefWidth="80.0" text="Save" textAlignment="CENTER" />
+      <Button onAction="#load" prefWidth="80.0" text="Load" textAlignment="CENTER" />
   </HBox>
   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="0" GridPane.rowIndex="4">
     <tabs>

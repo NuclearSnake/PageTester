@@ -29,9 +29,12 @@ public class SiteTester {
             Elements links = doc.select("a");
             Elements headersH1 = doc.select("h1");
             Elements images = doc.select("img");
-            testingResult.setLinks(links);
-            testingResult.setHeadersH1(headersH1);
-            testingResult.setImages(images);
+
+            ElementPostProcessor elementPostProcessor = new ElementPostProcessor();;
+            testingResult.setLinks(elementPostProcessor.getStringListReadyToGo(links));
+            testingResult.setHeadersH1(elementPostProcessor.getStringListReadyToGo(headersH1));
+            testingResult.setImages(elementPostProcessor.getStringListReadyToGo(images));
+
             return testingResult;
         } else {
             return null;

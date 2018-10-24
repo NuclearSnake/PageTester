@@ -1,10 +1,12 @@
 import org.jsoup.select.Elements;
 
+import java.util.List;
+
 public class WebPageTestingResult {
     private WebPageLoadingResult loadingResult;
-    private Elements links;
-    private Elements images;
-    private Elements headersH1;
+    private List<String> links;
+    private List<String> images;
+    private List<String> headersH1;
     private String title;
     private String description;
     private boolean isSuccessfull;
@@ -17,27 +19,30 @@ public class WebPageTestingResult {
         return loadingResult;
     }
 
-    public Elements getLinks() {
+    // returning not copy but the original list to reduce complexity
+    public List<String> getLinks() {
         return links;
     }
 
-    public void setLinks(Elements links) {
+    public void setLinks(List<String> links) {
         this.links = links;
     }
 
-    public Elements getImages() {
+    // returning not copy but the original list to reduce complexity
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(Elements images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 
-    public Elements getHeadersH1() {
+    public List<String> getHeadersH1() {
         return headersH1;
     }
 
-    public void setHeadersH1(Elements headersH1) {
+    // returning not copy but the original list to reduce complexity
+    public void setHeadersH1(List<String> headersH1) {
         this.headersH1 = headersH1;
     }
 
