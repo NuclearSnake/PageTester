@@ -8,8 +8,8 @@ The project is developed to learn and to get speed programming results as part-t
 1. Creating functionality in Java classes
 2. Refactoring in order to improve maintainability, lower coupling etc.
 3. JavaFX: creating UI and connecting it with the functionality
-4. Testing
-> 5. Creating nice JavaDocs
+> 4. Testing
+5. Creating nice JavaDocs
 
 ### Tasks
 - [x] Parsing
@@ -21,11 +21,11 @@ The project is developed to learn and to get speed programming results as part-t
   - [x] Images (as html tags)
   - [x] Links (internal + external)
 - [x] Possibility to use any URL provided to test
-- [ ] Nice UI for result viewing
+- [x] Nice UI for result viewing
 - [ ] I/O for the result
-  - [ ] Saving only current
+  - [x] Saving only current
   - [ ] Saving without overwriting
-  - [ ] Loading
+  - [x] Loading
 
 ### Requirements
 * Nice and shiny UI with JavaFX
