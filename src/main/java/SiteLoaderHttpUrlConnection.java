@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 
 /**
@@ -16,11 +17,11 @@ import java.net.URL;
  */
 public class SiteLoaderHttpUrlConnection implements SiteLoader{
     @Override
-    public WebPageLoadingResult loadWebpage(String url) {
-        return loadWithURLStream(url);
+    public WebPageLoadingResult loadWebpage(String url, int timeoutMS) throws SocketTimeoutException {
+        return loadWithURLStream(url, timeoutMS);
     }
 
-    private WebPageLoadingResult loadWithURLStream(String urlString){
+    private WebPageLoadingResult loadWithURLStream(String urlString, int timeoutMS) throws SocketTimeoutException {
         URL url;
         InputStream inputStream = null;
         BufferedReader br;
@@ -36,20 +37,20 @@ public class SiteLoaderHttpUrlConnection implements SiteLoader{
             timeMeasurer.setStartNow();
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setConnectTimeout(10_000);
+            httpURLConnection.setConnectTimeout(timeoutMS);
             final int responseCode = httpURLConnection.getResponseCode();
 
             webPageLoadingResult.setTimeToFirstBit(timeMeasurer.getElapsedMS());
             webPageLoadingResult.setResponseCode(responseCode);
 
-            if(responseCode != 200) {
+            if (responseCode != 200) {
                 return webPageLoadingResult;
             }
 
             inputStream = url.openStream();  // throws an IOException
             br = new BufferedReader(new InputStreamReader(inputStream));
 
-            if((line = br.readLine()) != null){
+            if ((line = br.readLine()) != null) {
                 builder.append(line);
 
                 while ((line = br.readLine()) != null) {
@@ -59,6 +60,9 @@ public class SiteLoaderHttpUrlConnection implements SiteLoader{
                 webPageLoadingResult.setTimeToFinish(timeMeasurer.getElapsedMS());
                 webPageLoadingResult.setWebpage(builder.toString());
             }
+        } catch (SocketTimeoutException ste){
+            ste.printStackTrace();
+            throw ste;
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } finally {

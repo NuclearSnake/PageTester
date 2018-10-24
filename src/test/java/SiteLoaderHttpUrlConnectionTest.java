@@ -8,14 +8,14 @@ public class SiteLoaderHttpUrlConnectionTest {
     public void loadWebpage() {
         // FIXME That is an overkill so for a small app we would maybe verify manually and for the bigger one we should set up custom mocking HTTP Client
 //        String webpageUrl = "https://www.facebook.com";
-//        WebPageLoadingResult loadingResult = new SiteLoaderHttpUrlConnection().loadWebpage(webpageUrl);
+//        WebPageLoadingResult loadingResult = new SiteLoaderHttpUrlConnection().loadWebpage(webpageUrl, 10_000);
 //
 //        if(loadingResult.getResponseCode() != 200){
 //            webpageUrl = "https://www.google.com";
-//            loadingResult = new SiteLoaderHttpUrlConnection().loadWebpage(webpageUrl);
+//            loadingResult = new SiteLoaderHttpUrlConnection().loadWebpage(webpageUrl, 10_000);
 //            if(loadingResult.getResponseCode() != 200){
 //                webpageUrl = "https://www.usa.gov";
-//                loadingResult = new SiteLoaderHttpUrlConnection().loadWebpage(webpageUrl);
+//                loadingResult = new SiteLoaderHttpUrlConnection().loadWebpage(webpageUrl, 10_000);
 //            }
 //        }
 //

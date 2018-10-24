@@ -1,5 +1,5 @@
 group 'com.neoproduction'
-version '0.9'
+version '1.0.7'
 
 apply plugin: 'java'
 

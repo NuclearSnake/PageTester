@@ -1,36 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
-
-<GridPane alignment="CENTER" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="418.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<?import javafx.geometry.Insets?>
+<GridPane alignment="CENTER" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="418.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller" >
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" prefWidth="250.0" />
   </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="ALWAYS" />
-        <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="ALWAYS" />
-        <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="ALWAYS" />
-        <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="ALWAYS" />
-        <RowConstraints prefHeight="203.0" vgrow="ALWAYS" />
-    </rowConstraints>
-  <Label text="Please type in a page you want to test:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-  <TextField fx:id="tfUrl" onAction="#onEnter" text="https://netpeaksoftware.com/" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-  <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="2">
-      <Button onAction="#test" prefWidth="80.0" text="Test" textAlignment="CENTER" />
-      <Button onAction="#save" prefWidth="80.0" text="Save" textAlignment="CENTER" />
-      <Button onAction="#load" prefWidth="80.0" text="Load" textAlignment="CENTER" />
+  <rowConstraints>
+    <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="ALWAYS" />
+    <RowConstraints prefHeight="203.0" vgrow="ALWAYS" />
+  </rowConstraints>
+  <Label text="Please type in a page you want to test:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+  <TextField fx:id="tfUrl" onAction="#onEnter" text="https://netpeaksoftware.com/" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+  <ProgressBar maxWidth="Infinity" fx:id="pbLoading" progress="0.0" GridPane.columnIndex="0" GridPane.rowIndex="3" visible="false"/>
+  <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="4">
+    <Button onAction="#test" prefWidth="80.0" text="Test" textAlignment="CENTER" />
   </HBox>
-  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="0" GridPane.rowIndex="5">
     <tabs>
       <Tab closable="false" text="WebView">
         <content>
@@ -40,9 +32,25 @@
       </Tab>
       <Tab closable="false" text="Plain Text">
         <content>
-          <TextArea fx:id="taResult" editable="false" wrapText="true" text="Here will be the result" />
+          <TextArea fx:id="taResult" editable="false" text="Here will be the result" wrapText="true" />
         </content>
       </Tab>
     </tabs>
   </TabPane>
+  <MenuBar GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <menus>
+      <Menu mnemonicParsing="false" text="File">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#onMenuSave" text="Save" fx:id="miSave" />
+          <MenuItem mnemonicParsing="false" onAction="#onMenuLoad" text="Load" fx:id="miLoad" />
+          <MenuItem mnemonicParsing="false" onAction="#onMenuExit" text="Exit" />
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Help">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#onMenuAbout" text="About" />
+        </items>
+      </Menu>
+    </menus>
+  </MenuBar>
 </GridPane>
