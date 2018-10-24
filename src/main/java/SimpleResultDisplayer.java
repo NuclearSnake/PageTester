@@ -3,10 +3,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class SimpleResultDisplayer implements ResultDisplayer {
-    final String newLineChar = "<br/>";
+    final String newLineChar = "\n";
 
     @Override
-    public String getResultText(SiteTester.WebPageTestingResult testingResult) {
+    public String getResultText(WebPageTestingResult testingResult) {
         StringBuilder builder = new StringBuilder();
         builder.append("The result of testing '").append(testingResult.getLoadingResult().getUrlString()).append("':").append(newLineChar);
         builder.append("\tTime to first bit: ").append(testingResult.getLoadingResult().getTimeToFirstBit()).append(newLineChar);
