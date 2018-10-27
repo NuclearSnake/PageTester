@@ -2,14 +2,15 @@
 
 Training project, Java + JavaFX + HTML Parser
 
-The project is developed to learn and to get speed programming results as part-time project.
+The project was developed to learn and to get speed programming results as part-time project.
 
-### There will be several work flows:
+### There were several work flows:
 1. Creating functionality in Java classes
 2. Refactoring in order to improve maintainability, lower coupling etc.
 3. JavaFX: creating UI and connecting it with the functionality
-> 4. Testing
+4. Testing
 5. Creating nice JavaDocs
+All done.
 
 ### Tasks
 - [x] Parsing
@@ -22,10 +23,13 @@ The project is developed to learn and to get speed programming results as part-t
   - [x] Links (internal + external)
 - [x] Possibility to use any URL provided to test
 - [x] Nice UI for result viewing
-- [ ] I/O for the result
+- [x] I/O for the result
   - [x] Saving only current
-  - [ ] Saving without overwriting
+  - [x] Saving without overwriting
   - [x] Loading
+ Additional:
+  - [x] Added animation of page loading, wrapped it into a separate animation task
+  - [x] Wrapped loading into a separate thread
 
 ### Requirements
 * Nice and shiny UI with JavaFX
