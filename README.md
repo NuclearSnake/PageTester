@@ -10,6 +10,7 @@ The project was developed to learn and to get speed programming results as part-
 3. JavaFX: creating UI and connecting it with the functionality
 4. Testing
 5. Creating nice JavaDocs
+
 All done.
 
 ### Tasks
@@ -27,7 +28,8 @@ All done.
   - [x] Saving only current
   - [x] Saving without overwriting
   - [x] Loading
- Additional:
+
+Additional:
   - [x] Added animation of page loading, wrapped it into a separate animation task
   - [x] Wrapped loading into a separate thread
 
